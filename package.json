@@ -36,11 +36,11 @@
   ],
   "scripts": {
     "openwiki": "node dist/cli/cli.js",
-    "build": "tsc -p tsconfig.json && tsc -p tsconfig.client.json && node scripts/copy-visualize-assets.cjs",
+    "build": "node init && tsc -p tsconfig.json && tsc -p tsconfig.client.json && node scripts/copy-visualize-assets.cjs",
     "changeset:version": "changeset version",
     "clean": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\"",
     "coverage": "vitest run --coverage",
-    "dev": "tsx src/cli/cli.tsx",
+    "dev": "node init && tsx src/cli/cli.tsx",
     "eval:ledger": "tsx evals/ledger/run.ts",
     "eval:ledger:reevaluate": "tsx evals/ledger/reevaluate.ts",
     "eval:ledger:typecheck": "tsc --noEmit -p evals/ledger/tsconfig.json",
@@ -54,7 +54,7 @@
     "prepack": "pnpm run build",
     "release": "pnpm run stamp:channel && pnpm run build && changeset publish",
     "stamp:channel": "node scripts/stamp-build-channel.cjs",
-    "start": "node dist/cli/cli.js",
+    "start": "node init && node dist/cli/cli.js",
     "test": "pnpm run typecheck && pnpm run build && pnpm run coverage",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.client.json"
   },
